@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code Launcher — Installer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "72", "72 Brand", Calibri, Arial, sans-serif;
+    background: #F5F5F5;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #00315C;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header .logo { font-size: 22px; font-weight: bold; letter-spacing: 1px; color: white; }
+  header .sub  { font-size: 13px; color: #99BBDD; margin-top: 2px; }
+  header .back { margin-left: auto; font-size: 12px; color: #99BBDD; text-decoration: none; }
+  header .back:hover { color: white; }
+
+  .hero {
+    background: linear-gradient(135deg, #00315C 0%, #007DB8 100%);
+    color: white;
+    padding: 48px 40px 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
+  .hero p  { font-size: 15px; color: #CCE8F8; max-width: 580px; margin: 0 auto; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 40px 24px; }
+
+  .prereq {
+    background: #FFF8E5;
+    border-left: 4px solid #E07A20;
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-size: 13px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .prereq code { background: #F0F0F0; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .steps {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  .steps h2 { font-size: 16px; color: #00315C; margin-bottom: 18px; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #007DB8;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 13px; color: #444; line-height: 1.6; }
+  .step-text code { background: #F0F0F0; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .card-header {
+    background: #00315C;
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: #007DB8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: bold; color: white;
+    flex-shrink: 0;
+  }
+  .card-title { font-size: 16px; font-weight: bold; }
+  .card-meta  { font-size: 12px; color: #99BBDD; margin-top: 2px; }
+
+  .card-body { padding: 20px 24px; }
+  .card-body p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 12px; }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 6px;
+    margin-bottom: 10px;
+  }
+  .tag-blue   { background: #E5F3FA; color: #007DB8; }
+  .tag-green  { background: #E5F7EE; color: #0A6E5C; }
+
+  .highlight  { color: #007DB8; font-weight: bold; font-size: 12px; }
+
+  .card-footer { padding: 14px 24px; border-top: 1px solid #F0F0F0; }
+
+  .btn-download {
+    display: inline-block;
+    padding: 11px 24px;
+    background: #007DB8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-download:hover { background: #005A8A; }
+
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid #E5E5E5;
+  }
+  footer a { color: #007DB8; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">SAP</div>
+    <div class="sub">Cloud ERP PS Leadership Team | Claude Code Launcher</div>
+  </div>
+  <a class="back" href="index.html">← Back to Hub</a>
+</header>
+
+<div class="hero">
+  <h1>Claude Code Launcher</h1>
+  <p>Install the Claude Code Launcher on your Windows notebook in two steps.</p>
+</div>
+
+<div class="container">
+
+  <div class="prereq">
+    <strong>Prerequisites:</strong>
+    Claude Code CLI installed &nbsp;•&nbsp;
+    HAI Proxy installed at <code>C:\SAPDevelop\hai\hai.exe</code> &nbsp;•&nbsp;
+    SAP MCP Suite configured in <code>~/.claude/settings.json</code>
+  </div>
+
+  <div class="steps">
+    <h2>How to install</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Click <strong>"Download Installer"</strong> below and save the zip to your Desktop.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Extract the zip, then double-click <code>instalar-claude-code.cmd</code>. No admin required.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">The installer copies the files to <code>C:\SAPDevelop\claude-launcher\</code> and creates a <strong>Claude Code</strong> shortcut on your Desktop with the official icon.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Use the Desktop shortcut to launch Claude Code. The HAI Proxy starts automatically and Claude opens when the proxy is ready.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">01</div>
+      <div>
+        <div class="card-title">Claude Code Launcher</div>
+        <div class="card-meta">Elton Macedo | I555748</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>
+        Windows launcher that starts the SAP HAI Proxy, waits until it is ready, then opens Claude Code automatically.
+        Includes a Desktop shortcut with the official Claude icon.
+      </p>
+      <span class="tag tag-blue">Setup</span>
+      <span class="tag tag-green">HAI Proxy</span>
+      <br>
+      <span class="highlight">⚡ No more manual proxy startup</span>
+    </div>
+    <div class="card-footer">
+      <a class="btn-download" href="claude-launcher.zip" download>⬇ Download Installer (.zip)</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Cloud ERP PS Leadership Team |
+  <a href="https://github.com/i555758/claude" target="_blank">GitHub Repository</a>
+  | 2026
+</footer>
+
+</body>
+</html>
