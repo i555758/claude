@@ -127,6 +127,17 @@
   .tag-violet { background: #EEE8F8; color: #6B48B0; }
   .tag-orange { background: #FDF0E3; color: #E07A20; }
 
+  .cmd-chip {
+    display: inline-block;
+    background: #1e1e2e;
+    color: #89dceb;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+
   footer {
     text-align: center;
     padding: 28px;
@@ -153,6 +164,7 @@
 
 <div class="container">
 
+  <!-- SECTION: Resources -->
   <div class="section-title">Resources</div>
   <div class="grid">
 
@@ -207,6 +219,32 @@
     </div>
 
   </div>
+
+  <!-- SECTION: Commands -->
+  <div class="section-title">Commands</div>
+  <div class="grid">
+
+    <!-- Card: CCC Executive Summary -->
+    <a class="card" href="ccc-executive-summary.html">
+      <div class="card-accent accent-violet"></div>
+      <div class="card-body">
+        <div class="card-icon">📊</div>
+        <div class="card-title">CCC Executive Summary</div>
+        <div class="card-desc">
+          Generates a full executive summary dashboard for your cloud project portfolio — live from
+          the SAP Cloud Reporting portal. Includes per-project risk analysis, email signals, and
+          an interactive HTML report that opens automatically.
+        </div>
+        <div class="card-tag tag-violet">Commands</div>
+        <div class="cmd-chip">/CCC-Executive-Summary</div>
+      </div>
+      <div class="card-footer">
+        Install Command <span>ccc-executive-summary.html →</span>
+      </div>
+    </a>
+
+  </div>
+
 </div>
 
 <footer>
