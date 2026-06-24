@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCC Executive Summary — Command Installer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "72", "72 Brand", Calibri, Arial, sans-serif;
+    background: #F5F5F5;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #00315C;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header .logo { font-size: 22px; font-weight: bold; letter-spacing: 1px; color: white; }
+  header .sub  { font-size: 13px; color: #99BBDD; margin-top: 2px; }
+  header .back { margin-left: auto; font-size: 12px; color: #99BBDD; text-decoration: none; }
+  header .back:hover { color: white; }
+
+  .hero {
+    background: linear-gradient(135deg, #6B48B0 0%, #354a5e 100%);
+    color: white;
+    padding: 48px 40px 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
+  .hero p  { font-size: 15px; color: #D8CCEE; max-width: 580px; margin: 0 auto; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 40px 24px; }
+
+  .prereq {
+    background: #FFF8E5;
+    border-left: 4px solid #E07A20;
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-size: 13px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .prereq code { background: #F0F0F0; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .what-it-does {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .what-it-does h2 { font-size: 16px; color: #00315C; margin-bottom: 14px; }
+  .what-it-does ul { padding-left: 20px; }
+  .what-it-does li { font-size: 13px; color: #444; line-height: 1.8; }
+  .what-it-does li strong { color: #00315C; }
+
+  .steps {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  .steps h2 { font-size: 16px; color: #00315C; margin-bottom: 18px; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #6B48B0;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 13px; color: #444; line-height: 1.6; }
+  .step-text code { background: #F0F0F0; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .card-header {
+    background: #00315C;
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-icon-big {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: #6B48B0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-title { font-size: 16px; font-weight: bold; }
+  .card-meta  { font-size: 12px; color: #99BBDD; margin-top: 2px; }
+
+  .card-body { padding: 20px 24px; }
+  .card-body p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 12px; }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 6px;
+    margin-bottom: 10px;
+  }
+  .tag-violet { background: #EEE8F8; color: #6B48B0; }
+  .tag-blue   { background: #E5F3FA; color: #007DB8; }
+
+  .highlight  { color: #6B48B0; font-weight: bold; font-size: 12px; }
+
+  .card-footer { padding: 14px 24px; border-top: 1px solid #F0F0F0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary { background: #6B48B0; color: white; }
+  .btn-primary:hover { background: #4d3280; }
+  .btn-secondary { background: #F0F0F0; color: #333; }
+  .btn-secondary:hover { background: #E0E0E0; }
+
+  .usage-box {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 18px 22px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 16px;
+    position: relative;
+  }
+  .usage-box .prompt { color: #a6e3a1; }
+  .usage-box .cmd    { color: #89dceb; }
+  .usage-box .comment { color: #6c7086; }
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 12px;
+    background: #313244;
+    border: none;
+    border-radius: 4px;
+    color: #cdd6f4;
+    font-size: 11px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: #45475a; }
+
+  .note {
+    background: #EEF6FF;
+    border-left: 4px solid #007DB8;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid #E5E5E5;
+  }
+  footer a { color: #007DB8; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">SAP</div>
+    <div class="sub">Cloud ERP PS Leadership Team | Claude Code Hub</div>
+  </div>
+  <a class="back" href="index.html">← Back to Hub</a>
+</header>
+
+<div class="hero">
+  <h1>CCC Executive Summary</h1>
+  <p>Claude Code command that generates an executive summary dashboard for your entire cloud project portfolio — live from the SAP Cloud Reporting portal.</p>
+</div>
+
+<div class="container">
+
+  <div class="prereq">
+    <strong>Prerequisites:</strong>
+    Claude Code CLI installed &nbsp;•&nbsp;
+    SAP MCP Suite configured in <code>~/.claude/settings.json</code> &nbsp;•&nbsp;
+    Access to <code>reporting.ondemand.com</code>
+  </div>
+
+  <!-- What it does -->
+  <div class="what-it-does">
+    <h2>What this command does</h2>
+    <ul>
+      <li><strong>Fetches live data</strong> from the SAP Cloud Reporting portal (your active project portfolio)</li>
+      <li><strong>Scans recent emails</strong> via Microsoft Graph API (last 3 days) for project signals</li>
+      <li><strong>Generates per-project summaries:</strong> Executive Summary (max 500 chars) + Simple Explanation (1–2 sentences)</li>
+      <li><strong>Saves an interactive HTML dashboard</strong> to <code>C:\Users\{YOU}\ExecutiveSummary\executive_summary_latest.html</code></li>
+      <li><strong>Opens the dashboard automatically</strong> — includes checkboxes, filter tabs, and review progress bar</li>
+    </ul>
+  </div>
+
+  <!-- Install steps -->
+  <div class="steps">
+    <h2>How to install</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Click <strong>"Download Installer"</strong> below and save the zip to your Desktop.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Extract the zip, then double-click <code>install-ccc-executive-summary.cmd</code>. No admin required.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">The installer copies <code>CCC-Executive-Summary.md</code> to <code>%USERPROFILE%\.claude\commands\</code> and confirms success.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Open Claude Code and type <code>/CCC-Executive-Summary</code> to run the command.</div>
+    </div>
+  </div>
+
+  <!-- Download card -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-big">📊</div>
+      <div>
+        <div class="card-title">CCC Executive Summary</div>
+        <div class="card-meta">Elton Macedo | I555748 &nbsp;•&nbsp; Claude Code Command</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>
+        Reads your project portfolio from the SAP Cloud Reporting portal and your recent emails,
+        then generates a ready-to-present executive summary for each active project — including
+        risk analysis for Red-status projects with full change history.
+      </p>
+      <span class="tag tag-violet">Commands</span>
+      <span class="tag tag-blue">Cloud Reporting</span>
+      <span class="tag tag-blue">Graph API</span>
+      <br>
+      <span class="highlight">📊 One command → full portfolio briefing</span>
+
+      <div class="usage-box">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('/CCC-Executive-Summary');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <span class="comment"># In Claude Code, type:</span><br>
+        <span class="prompt">claude&gt;</span> <span class="cmd">/CCC-Executive-Summary</span>
+      </div>
+
+      <div class="note">
+        <strong>Note:</strong> On first run, Claude may ask you to authenticate with the SAP Cloud Reporting portal.
+        Follow the browser prompt — credentials are stored securely for subsequent runs.
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-primary" href="ccc-executive-summary-installer.zip" download>⬇ Download Installer (.zip)</a>
+      <a class="btn btn-secondary" href="https://github.com/i555758/claude" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Cloud ERP PS Leadership Team |
+  <a href="https://github.com/i555758/claude" target="_blank">GitHub Repository</a>
+  | 2026
+</footer>
+
+</body>
+</html>
